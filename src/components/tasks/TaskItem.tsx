@@ -32,7 +32,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 mb-4 max-w-md mx-auto sm:max-w-lg md:max-w-xl lg:max-w-2xl border-l-4 border-blue-500">
+    <div className="bg-white shadow-lg rounded-lg p-4 mb-4 max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto border-l-4 border-blue-500">
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-bold text-gray-800">{task.title}</h2>
         <span
