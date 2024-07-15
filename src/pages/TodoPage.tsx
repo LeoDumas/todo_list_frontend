@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllTasks, createTask, updateTask, deleteTask } from "../api/tasks";
 import TaskItem from "../components/tasks/TaskItem";
 import Modal from "../components/Modal";
+import { FaSort, FaPlus } from "react-icons/fa";
 
 interface Task {
   _id: string;
@@ -118,32 +119,35 @@ const TodoPage: React.FC = () => {
 
   return (
     <div className="p-4">
-      <div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4 z-10 flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-4">
+      <div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4 z-10 flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 md:space-x-4">
         <input
           type="text"
           placeholder="Rechercher une tâche..."
-          className="w-full sm:flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full md:flex-grow h-12 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
-          <select
-            className="p-2 border border-gray-300 rounded w-full sm:w-auto"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="endDate">Trier par date de fin</option>
-            <option value="status">Trier par état</option>
-          </select>
+        <div className="flex flex-col md:items-center md:flex-row space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
+          <div className="relative h-12">
+            <select
+              className="h-full p-2 border border-gray-300 rounded w-full md:w-auto appearance-none"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="endDate">Trier par date de fin</option>
+              <option value="status">Trier par état</option>
+            </select>
+            <FaSort className="absolute top-3 right-2 text-gray-500 md:hidden" />
+          </div>
           <button
-            className="p-2 bg-blue-500 text-white rounded w-full sm:w-auto"
+            className="hidden md:flex h-12 p-2 bg-blue-500 text-white rounded w-full md:w-auto items-center justify-center"
             onClick={() => setIsModalOpen(true)}
           >
-            Créer une nouvelle tâche
+            <span>Ajouter</span>
           </button>
         </div>
       </div>
-      <div className="mt-52 sm:mt-48 md:mt-44 lg:mt-36">
+      <div className=" mt-36 md:mt-28 lg:mt-24">
         {sortedTasks.map((task) => (
           <TaskItem
             key={task._id}
@@ -157,6 +161,12 @@ const TodoPage: React.FC = () => {
           />
         ))}
       </div>
+      <button
+        className="fixed bottom-4 right-4 md:hidden p-2 bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center"
+        onClick={() => setIsModalOpen(true)}
+      >
+        <FaPlus className="text-2xl" />
+      </button>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <h2 className="text-xl font-bold mb-2">
           {editingTask ? "Modifier la tâche" : "Créer une nouvelle tâche"}
