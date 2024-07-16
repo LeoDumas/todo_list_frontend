@@ -97,7 +97,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         />
       </div>
       {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-      <button type="submit" className="bg-green-500 py-3 rounded-md text-white">
+      <button type="submit" className="bg-green-500 py-3 rounded-md text-black">
         Inscription
       </button>
       <div className="text-sm flex gap-x-3">

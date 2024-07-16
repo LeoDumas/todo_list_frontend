@@ -1,5 +1,5 @@
-import axios from "axios";
-import Cookies from "js-cookie";
+// src/api/tasks.ts
+import api from "./api";
 
 interface Task {
   _id: string;
@@ -12,26 +12,6 @@ interface Task {
   status: string;
   __v: number;
 }
-
-// Axios object
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  withCredentials: true,
-});
-
-// Interceptors are used to add the JWT token to requests
-api.interceptors.request.use(
-  (config) => {
-    const token = Cookies.get("jwt");
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
 export const getAllTasks = async (): Promise<Task[]> => {
   try {

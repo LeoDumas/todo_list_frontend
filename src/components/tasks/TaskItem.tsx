@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../Modal";
 
 interface Task {
   _id: string;
@@ -18,6 +19,8 @@ interface TaskItemProps {
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const getStatusClasses = (status: string) => {
     switch (status) {
       case "to do":
@@ -29,6 +32,19 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
       default:
         return "bg-gray-100 text-gray-800";
     }
+  };
+
+  const handleDelete = () => {
+    setShowModal(true);
+  };
+
+  const confirmDelete = () => {
+    setShowModal(false);
+    onDelete();
+  };
+
+  const cancelDelete = () => {
+    setShowModal(false);
   };
 
   return (
@@ -70,11 +86,30 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         </button>
         <button
           className="px-4 py-2 bg-red-500 text-white rounded"
-          onClick={onDelete}
+          onClick={handleDelete}
         >
           Supprimer
         </button>
       </div>
+
+      <Modal isOpen={showModal} onClose={cancelDelete}>
+        <h2 className="text-xl font-bold mb-4">Confirmer la suppression</h2>
+        <p className="mb-4">Êtes-vous sûr de vouloir supprimer cette tâche ?</p>
+        <div className="flex justify-end">
+          <button
+            className="px-4 py-2 bg-gray-500 text-white rounded mr-2"
+            onClick={cancelDelete}
+          >
+            Annuler
+          </button>
+          <button
+            className="px-4 py-2 bg-red-500 text-white rounded"
+            onClick={confirmDelete}
+          >
+            Supprimer
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
