@@ -24,6 +24,7 @@
     "noFallthroughCasesInSwitch": true,
 
     // Jest config
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
