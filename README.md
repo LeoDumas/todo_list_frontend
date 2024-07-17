@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+# Todo App Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est le frontend de l'application Todo, développé avec ViteJS, ReactJS, TypeScript et TailwindCSS. (Test technique Bifora)
 
-Currently, two official plugins are available:
+## Prérequis
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js >= 14.x
+- npm >= 6.x ou yarn >= 1.x
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clonez le dépôt :
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   git clone https://github.com/votre-utilisateur/todo-frontend.git
+   cd todo-frontend
+   ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+2. Installez les dépendances :
+   ```bash
+   npm install
+   ```
+   ou
+   ```bash
+   yarn install
+   ```
+
+## Démarrage du projet
+
+Pour démarrer le serveur de développement, exécutez :
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ou
+
+```bash
+yarn dev
+```
+
+L'application sera disponible à l'adresse [http://localhost:5173](http://localhost:5173).
+
+## Scripts disponibles
+
+- `dev`: Démarre le serveur de développement
+- `build`: Compile l'application pour la production
+- `test` : Test les fonctionnalités du site
+- `preview`: Sert l'application compilée (agit comme un serveur)
+- `lint`: Lint le code source
