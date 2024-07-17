@@ -48,9 +48,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     <form
       className="flex flex-col gap-y-6 bg-white border shadow-md p-8"
       onSubmit={handleSubmit}
+      data-testid="register-form"
     >
       <div>
-        <h2 className="text-xl font-semibold">Inscription</h2>
+        <h2 className="text-xl font-semibold" data-testid="register-heading">
+          Inscription
+        </h2>
       </div>
       <div className="flex flex-col">
         <label htmlFor="username">Nom d'utilisateur :</label>
@@ -61,6 +64,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={username}
           onChange={onUsernameChange}
           className="border rounded-md p-2"
+          data-testid="username-input"
         />
       </div>
       <div className="flex flex-col">
@@ -72,10 +76,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={email}
           onChange={onEmailChange}
           className="border rounded-md p-2"
+          data-testid="email-input"
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="password">Mot de passe :</label>
+        <label htmlFor="password" data-testid="password-label">
+          Mot de passe :
+        </label>
         <input
           type="password"
           name="password"
@@ -83,10 +90,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={password}
           onChange={onPasswordChange}
           className="border rounded-md p-2"
+          data-testid="password-input"
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="passwordVerif">Confirmez le mot de passe :</label>
+        <label htmlFor="passwordVerif" data-testid="passwordVerif-label">
+          Confirmez le mot de passe :
+        </label>
         <input
           type="password"
           name="passwordVerif"
@@ -94,15 +104,28 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           value={passwordVerif}
           onChange={handlePasswordVerifChange}
           className="border rounded-md p-2"
+          data-testid="passwordVerif-input"
         />
       </div>
-      {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
-      <button type="submit" className="bg-green-500 py-3 rounded-md text-black">
+      {passwordError && (
+        <p className="text-red-500 text-sm" data-testid="password-error">
+          {passwordError}
+        </p>
+      )}
+      <button
+        type="submit"
+        className="bg-green-500 py-3 rounded-md text-black"
+        data-testid="submit-button"
+      >
         Inscription
       </button>
       <div className="text-sm flex gap-x-3">
         <p>Vous avez déjà un compte ?</p>
-        <Link to="/login" className="text-blue-600 font-medium">
+        <Link
+          to="/login"
+          className="text-blue-600 font-medium"
+          data-testid="redirectToLogin-link"
+        >
           Connexion
         </Link>
       </div>

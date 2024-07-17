@@ -50,7 +50,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 mb-4 max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto border-l-4 border-blue-500">
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-xl font-bold text-gray-800">{task.title}</h2>
+        <h2
+          className="text-xl font-bold text-gray-800"
+          data-testid="task-title"
+        >
+          {task.title}
+        </h2>
         <span
           className={`px-2 py-1 rounded text-sm font-medium ${getStatusClasses(
             task.status
@@ -59,20 +64,22 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
           {task.status}
         </span>
       </div>
-      <p className="text-gray-600 mb-4">{task.description}</p>
+      <p className="text-gray-600 mb-4" data-testid="task-description">
+        {task.description}
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <p className="text-gray-700">
+        <p className="text-gray-700" data-testid="task-start-date">
           <span className="font-semibold">Début :</span>{" "}
-          {new Date(task.startDate).toLocaleDateString()}
+          {new Date(task.startDate).toLocaleDateString("fr-FR")}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700" data-testid="task-end-date">
           <span className="font-semibold">Fin :</span>{" "}
-          {new Date(task.endDate).toLocaleDateString()}
+          {new Date(task.endDate).toLocaleDateString("fr-FR")}
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700" data-testid="task-duration">
           <span className="font-semibold">Durée :</span> {task.duration} jours
         </p>
-        <p className="text-gray-700">
+        <p className="text-gray-700" data-testid="task-responsible">
           <span className="font-semibold">Responsable :</span>{" "}
           {task.responsible}
         </p>
@@ -81,12 +88,14 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
         <button
           className="px-4 py-2 bg-yellow-500 text-white rounded mr-2"
           onClick={onEdit}
+          data-testid="edit-button"
         >
           Éditer
         </button>
         <button
           className="px-4 py-2 bg-red-500 text-white rounded"
           onClick={handleDelete}
+          data-testid="delete-button"
         >
           Supprimer
         </button>
@@ -99,12 +108,14 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) => {
           <button
             className="px-4 py-2 bg-gray-500 text-white rounded mr-2"
             onClick={cancelDelete}
+            data-testid="cancel-delete-button"
           >
             Annuler
           </button>
           <button
             className="px-4 py-2 bg-red-500 text-white rounded"
             onClick={confirmDelete}
+            data-testid="confirm-delete-button"
           >
             Supprimer
           </button>
